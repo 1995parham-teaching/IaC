@@ -1,0 +1,12 @@
+services:
+  localstack:
+    image: localstack/localstack:3
+    container_name: iac-localstack
+    network_mode: host
+    environment:
+      - SERVICES=ec2,s3,iam
+      - DEBUG=1
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "./.localstack:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
